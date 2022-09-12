@@ -45,7 +45,7 @@
             this.cmbRoom = new System.Windows.Forms.ComboBox();
             this.dTpArrival = new System.Windows.Forms.DateTimePicker();
             this.dTpDeparture = new System.Windows.Forms.DateTimePicker();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtTotal = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.btnBook = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridBooking)).BeginInit();
@@ -69,12 +69,12 @@
             this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnDelete.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDelete.ForeColor = System.Drawing.Color.Black;
-            this.btnDelete.Location = new System.Drawing.Point(226, 330);
+            this.btnDelete.Location = new System.Drawing.Point(329, 263);
             this.btnDelete.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(86, 35);
             this.btnDelete.TabIndex = 54;
-            this.btnDelete.Text = "Delete";
+            this.btnDelete.Text = "Remove";
             this.btnDelete.UseVisualStyleBackColor = false;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
@@ -126,6 +126,7 @@
             this.dataGridBooking.Location = new System.Drawing.Point(329, 80);
             this.dataGridBooking.Name = "dataGridBooking";
             this.dataGridBooking.ReadOnly = true;
+            this.dataGridBooking.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridBooking.Size = new System.Drawing.Size(438, 175);
             this.dataGridBooking.TabIndex = 49;
             // 
@@ -165,13 +166,14 @@
             this.btnSubmit.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnSubmit.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSubmit.ForeColor = System.Drawing.Color.Black;
-            this.btnSubmit.Location = new System.Drawing.Point(19, 330);
+            this.btnSubmit.Location = new System.Drawing.Point(21, 280);
             this.btnSubmit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnSubmit.Name = "btnSubmit";
             this.btnSubmit.Size = new System.Drawing.Size(85, 35);
             this.btnSubmit.TabIndex = 48;
-            this.btnSubmit.Text = "Submit";
+            this.btnSubmit.Text = "Add";
             this.btnSubmit.UseVisualStyleBackColor = false;
+            this.btnSubmit.Click += new System.EventHandler(this.btnSubmit_Click);
             // 
             // label2
             // 
@@ -241,14 +243,14 @@
             this.dTpDeparture.Size = new System.Drawing.Size(169, 20);
             this.dTpDeparture.TabIndex = 59;
             // 
-            // textBox1
+            // txtTotal
             // 
-            this.textBox1.Location = new System.Drawing.Point(597, 280);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(170, 20);
-            this.textBox1.TabIndex = 60;
+            this.txtTotal.Location = new System.Drawing.Point(597, 280);
+            this.txtTotal.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtTotal.Name = "txtTotal";
+            this.txtTotal.ReadOnly = true;
+            this.txtTotal.Size = new System.Drawing.Size(170, 20);
+            this.txtTotal.TabIndex = 60;
             // 
             // label5
             // 
@@ -275,17 +277,17 @@
             this.btnBook.TabIndex = 62;
             this.btnBook.Text = "Book";
             this.btnBook.UseVisualStyleBackColor = false;
+            this.btnBook.Click += new System.EventHandler(this.btnBook_Click);
             // 
             // Reservation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Teal;
-            this.BackgroundImage = global::HotelManagementSystem.Properties.Resources.pat;
             this.ClientSize = new System.Drawing.Size(795, 485);
             this.Controls.Add(this.btnBook);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtTotal);
             this.Controls.Add(this.dTpDeparture);
             this.Controls.Add(this.dTpArrival);
             this.Controls.Add(this.cmbRoom);
@@ -326,7 +328,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Room_Category;
         private System.Windows.Forms.DataGridViewTextBoxColumn Room_Description;
         private System.Windows.Forms.DataGridViewTextBoxColumn category_price;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtTotal;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btnBook;
     }

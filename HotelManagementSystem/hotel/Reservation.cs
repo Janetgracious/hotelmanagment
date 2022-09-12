@@ -28,6 +28,7 @@ namespace HotelManagementSystem.hotel
         {
             getGuest();
             getRoom();
+            generateReservationID();
         }
 
 
@@ -62,10 +63,10 @@ namespace HotelManagementSystem.hotel
             
         }
 
+        //delete from cart
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            //MessageBox.Show(cmbRoom.SelectedValue.ToString());
-            createCart();
+            removeCell();   
         }
 
         private void getRoomById(string id)
@@ -90,20 +91,24 @@ namespace HotelManagementSystem.hotel
             }
         }
 
+        //generate reservation id
+        private void generateReservationID()
+        {
+            //call the random class
+            Random rand = new Random();
+            txtID.Text = rand.Next(10, 100).ToString(); //generate random number
+        }
+
         //the logic part
         private void createCart()
         {
-
-
-            //call the random class
-            Random rand = new Random();
-            string reservationID = rand.Next(10, 100).ToString(); //generate random number
+            
             string roomId = cmbRoom.SelectedValue.ToString(); // get the selected room roomID
 
             int num = 0;
 
-            getRoomById(roomId);
-            MessageBox.Show(desc);
+            getRoomById(roomId); //call this method to query the database to retrieve the select room data
+
             DataGridViewRow newRow = new DataGridViewRow();
             newRow.CreateCells(dataGridBooking);
             newRow.Cells[0].Value = id;
@@ -112,8 +117,156 @@ namespace HotelManagementSystem.hotel
             newRow.Cells[3].Value = price;
             dataGridBooking.Rows.Add(newRow);
 
+            calcTotalAmount();
+
+        }
+
+        //remove from the cart
+        private void removeCell()
+        {
+            try
+            {
+                if (dataGridBooking.SelectedRows.Count > 0)
+                {
+                    foreach (DataGridViewRow row in dataGridBooking.Rows)
+                    {
+                        if (row.Selected == true)
+                        {
+                            txtTotal.Text = (Convert.ToDouble(txtTotal.Text) - Convert.ToDouble(row.Cells["category_price"].Value)).ToString();
+
+                            dataGridBooking.Rows.RemoveAt(row.Index);
+                            dataGridBooking.Refresh();
+                        }
+
+                    }
+                }
+            }
+            catch (Exception)
+            {
+
+                MessageBox.Show("Remove: Something went wrong");
+            }
+
+        }
 
 
+        //calculate for total
+        private void calcTotalAmount()
+        {
+            //calculate the datagridview price
+            double sum = 0;
+
+            for (int i = 0; i < dataGridBooking.Rows.Count; i++)
+            {
+                sum += Convert.ToDouble(dataGridBooking.Rows[i].Cells[3].Value);
+            }
+
+            //set the value to the total textbox
+            txtTotal.Text = sum.ToString();
+
+        }
+
+        private void btnSubmit_Click(object sender, EventArgs e)
+        {
+            //MessageBox.Show(cmbRoom.SelectedValue.ToString());
+            createCart();
+        }
+
+        //insert into bill
+        private void insertBillDB()
+        {
+
+            if (txtTotal.Text == "")
+            {
+                MessageBox.Show("Select a Room");
+
+                return;
+            }
+
+            DB.Conn.Open();
+
+            //Create
+            string sql = "INSERT INTO bill (res_id, total) VALUES ('" + txtID.Text + "', '" + txtTotal.Text + "')";
+            DB.Command = new MySqlCommand(sql, DB.Conn);
+            DB.Command.ExecuteNonQuery();
+
+            //display success message
+            MessageBox.Show("completed");
+
+        }
+
+        //insert into reservations
+        private void insertReservations()
+        {
+            string custId = cmbGuest.SelectedValue.ToString(); //get the customer id
+
+            foreach (DataGridViewRow row in dataGridBooking.Rows)
+            {
+                string roomID = Convert.ToString(row.Cells["room_id"].Value);
+                MessageBox.Show(roomID);
+
+                //DB.Conn.Open();
+
+                ////Create
+                //string sql = "INSERT INTO reservations (res_id, res_arrival, res_departure, cus_id, room_id) VALUES ('" + txtID.Text + "', '" + dTpArrival.Text + "', '" + dTpDeparture.Text+ "', '" + custId + "', '" + roomID + "')";
+                //DB.Command = new MySqlCommand(sql, DB.Conn);
+                //DB.Command.ExecuteNonQuery();
+                //DB.Conn.Close();
+
+            }
+        }
+
+        //clear the cart
+        //CLEAR CART
+        private void clearDataGridTable()
+        {
+            dataGridBooking.DataSource = null;
+            dataGridBooking.Rows.Clear();
+
+        }
+
+
+        private void fireTheBook()
+        {
+            if (dataGridBooking.Rows.Count == 0 || dataGridBooking == null)
+            {
+                MessageBox.Show("Select a room");
+
+                return;
+            }
+
+            if (txtTotal.Text == "0" || txtTotal.Text == "")
+            {
+                MessageBox.Show("Subtotal is 0");
+                return;
+            }
+
+
+
+
+            DialogResult confirm = MessageBox.Show("Do you want to make reservation? ", "Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (confirm == DialogResult.Yes)
+            {
+
+                //insert into reservation in the db
+                insertReservations();
+
+                //insert the bill  in the db
+                insertBillDB();
+
+                //clear the cart
+                clearDataGridTable();
+
+                generateReservationID(); //generate new code
+
+
+            }
+        }
+
+        private void btnBook_Click(object sender, EventArgs e)
+        {
+            fireTheBook();
         }
     }
 }
