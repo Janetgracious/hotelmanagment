@@ -30,7 +30,6 @@
         {
             this.cmbGuest = new System.Windows.Forms.ComboBox();
             this.btnDelete = new System.Windows.Forms.Button();
-            this.btnUpdate = new System.Windows.Forms.Button();
             this.txtID = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.dataGridBooking = new System.Windows.Forms.DataGridView();
@@ -58,7 +57,7 @@
             this.cmbGuest.Items.AddRange(new object[] {
             "Available",
             "Non-Available"});
-            this.cmbGuest.Location = new System.Drawing.Point(122, 131);
+            this.cmbGuest.Location = new System.Drawing.Point(124, 160);
             this.cmbGuest.Name = "cmbGuest";
             this.cmbGuest.Size = new System.Drawing.Size(169, 21);
             this.cmbGuest.TabIndex = 55;
@@ -69,7 +68,7 @@
             this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnDelete.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDelete.ForeColor = System.Drawing.Color.Black;
-            this.btnDelete.Location = new System.Drawing.Point(329, 263);
+            this.btnDelete.Location = new System.Drawing.Point(331, 303);
             this.btnDelete.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(86, 35);
@@ -78,23 +77,9 @@
             this.btnDelete.UseVisualStyleBackColor = false;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
-            // btnUpdate
-            // 
-            this.btnUpdate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(183)))), ((int)(((byte)(3)))));
-            this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnUpdate.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUpdate.ForeColor = System.Drawing.Color.Black;
-            this.btnUpdate.Location = new System.Drawing.Point(123, 330);
-            this.btnUpdate.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(86, 35);
-            this.btnUpdate.TabIndex = 53;
-            this.btnUpdate.Text = "Update";
-            this.btnUpdate.UseVisualStyleBackColor = false;
-            // 
             // txtID
             // 
-            this.txtID.Location = new System.Drawing.Point(124, 59);
+            this.txtID.Location = new System.Drawing.Point(124, 109);
             this.txtID.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtID.Name = "txtID";
             this.txtID.ReadOnly = true;
@@ -106,7 +91,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(183)))), ((int)(((byte)(3)))));
-            this.label4.Location = new System.Drawing.Point(18, 170);
+            this.label4.Location = new System.Drawing.Point(20, 199);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(51, 18);
@@ -117,13 +102,14 @@
             // 
             this.dataGridBooking.AllowUserToAddRows = false;
             this.dataGridBooking.AllowUserToDeleteRows = false;
+            this.dataGridBooking.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
             this.dataGridBooking.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridBooking.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.room_id,
             this.Room_Category,
             this.Room_Description,
             this.category_price});
-            this.dataGridBooking.Location = new System.Drawing.Point(329, 80);
+            this.dataGridBooking.Location = new System.Drawing.Point(331, 109);
             this.dataGridBooking.Name = "dataGridBooking";
             this.dataGridBooking.ReadOnly = true;
             this.dataGridBooking.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -166,7 +152,7 @@
             this.btnSubmit.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnSubmit.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSubmit.ForeColor = System.Drawing.Color.Black;
-            this.btnSubmit.Location = new System.Drawing.Point(21, 280);
+            this.btnSubmit.Location = new System.Drawing.Point(208, 303);
             this.btnSubmit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnSubmit.Name = "btnSubmit";
             this.btnSubmit.Size = new System.Drawing.Size(85, 35);
@@ -180,7 +166,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(183)))), ((int)(((byte)(3)))));
-            this.label2.Location = new System.Drawing.Point(16, 234);
+            this.label2.Location = new System.Drawing.Point(18, 263);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(82, 18);
@@ -192,7 +178,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(183)))), ((int)(((byte)(3)))));
-            this.label1.Location = new System.Drawing.Point(18, 203);
+            this.label1.Location = new System.Drawing.Point(20, 232);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(55, 18);
@@ -204,7 +190,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(183)))), ((int)(((byte)(3)))));
-            this.label3.Location = new System.Drawing.Point(18, 134);
+            this.label3.Location = new System.Drawing.Point(20, 163);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(50, 18);
@@ -221,16 +207,15 @@
             "Suite Room",
             "Duplex Room",
             "Penthouse Room"});
-            this.cmbRoom.Location = new System.Drawing.Point(122, 167);
+            this.cmbRoom.Location = new System.Drawing.Point(124, 196);
             this.cmbRoom.Name = "cmbRoom";
             this.cmbRoom.Size = new System.Drawing.Size(169, 21);
             this.cmbRoom.TabIndex = 57;
-            this.cmbRoom.SelectedIndexChanged += new System.EventHandler(this.cmbRoom_SelectedIndexChanged);
             // 
             // dTpArrival
             // 
             this.dTpArrival.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dTpArrival.Location = new System.Drawing.Point(122, 203);
+            this.dTpArrival.Location = new System.Drawing.Point(124, 232);
             this.dTpArrival.Name = "dTpArrival";
             this.dTpArrival.Size = new System.Drawing.Size(169, 20);
             this.dTpArrival.TabIndex = 58;
@@ -238,14 +223,14 @@
             // dTpDeparture
             // 
             this.dTpDeparture.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dTpDeparture.Location = new System.Drawing.Point(122, 234);
+            this.dTpDeparture.Location = new System.Drawing.Point(124, 263);
             this.dTpDeparture.Name = "dTpDeparture";
             this.dTpDeparture.Size = new System.Drawing.Size(169, 20);
             this.dTpDeparture.TabIndex = 59;
             // 
             // txtTotal
             // 
-            this.txtTotal.Location = new System.Drawing.Point(597, 280);
+            this.txtTotal.Location = new System.Drawing.Point(599, 309);
             this.txtTotal.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtTotal.Name = "txtTotal";
             this.txtTotal.ReadOnly = true;
@@ -257,7 +242,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(183)))), ((int)(((byte)(3)))));
-            this.label5.Location = new System.Drawing.Point(551, 282);
+            this.label5.Location = new System.Drawing.Point(553, 311);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(42, 18);
@@ -270,7 +255,7 @@
             this.btnBook.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnBook.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBook.ForeColor = System.Drawing.Color.Black;
-            this.btnBook.Location = new System.Drawing.Point(681, 310);
+            this.btnBook.Location = new System.Drawing.Point(683, 339);
             this.btnBook.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnBook.Name = "btnBook";
             this.btnBook.Size = new System.Drawing.Size(86, 35);
@@ -294,7 +279,6 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.cmbGuest);
             this.Controls.Add(this.btnDelete);
-            this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.txtID);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.dataGridBooking);
@@ -313,7 +297,6 @@
         #endregion
         private System.Windows.Forms.ComboBox cmbGuest;
         private System.Windows.Forms.Button btnDelete;
-        private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.TextBox txtID;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.DataGridView dataGridBooking;
@@ -324,12 +307,12 @@
         private System.Windows.Forms.ComboBox cmbRoom;
         private System.Windows.Forms.DateTimePicker dTpArrival;
         private System.Windows.Forms.DateTimePicker dTpDeparture;
+        private System.Windows.Forms.TextBox txtTotal;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button btnBook;
         private System.Windows.Forms.DataGridViewTextBoxColumn room_id;
         private System.Windows.Forms.DataGridViewTextBoxColumn Room_Category;
         private System.Windows.Forms.DataGridViewTextBoxColumn Room_Description;
         private System.Windows.Forms.DataGridViewTextBoxColumn category_price;
-        private System.Windows.Forms.TextBox txtTotal;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Button btnBook;
     }
 }

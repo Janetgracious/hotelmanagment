@@ -1,4 +1,4 @@
-﻿using MySql.Data.MySqlClient;
+﻿using MySql.Data.MySqlClient; //import mysl connection class
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,8 +21,8 @@ namespace HotelManagementSystem
             string password = "";
             string ssl = "none";
             string database = "hotelmanagementsystem";
-            string connection = String.Format("datasource={0}; port={1}; user id={2}; password={3}; database={4}; SSL Mode={5}", source, port, user, password, database, ssl);
-            //string connection = $"datasource={source}; port={port}; user id={user}; password={password}; database={database}; SSL Mode={ssl}";
+            //string connection = String.Format("datasource={0}; port={1}; user id={2}; password={3}; database={4}; SSL Mode={5}", source, port, user, password, database, ssl);
+            string connection = $"datasource={source}; port={port}; user id={user}; password={password}; database={database}; SSL Mode={ssl}";
             //string connection = "datasource=" + source + ";port=" + port + "; user id =" + user + ";password=" + password + ";database="+database+";SSL Mode=" + ssl + "";
             Conn = new MySqlConnection(connection);
             //Command = Conn.CreateCommand();

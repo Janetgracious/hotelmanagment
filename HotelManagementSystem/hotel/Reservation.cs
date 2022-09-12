@@ -14,7 +14,7 @@ namespace HotelManagementSystem.hotel
     public partial class Reservation : Form
     {
         Database DB = new Database();
-        public string id { get; set; }
+        public string roomID { get; set; }
         public string category { get; set; }
         public string desc { get; set; }
         public string price { get; set; }
@@ -57,11 +57,7 @@ namespace HotelManagementSystem.hotel
             cmbRoom.DisplayMember = "room_category";
             cmbRoom.ValueMember = "room_id";
         }
-
-        private void cmbRoom_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            
-        }
+        
 
         //delete from cart
         private void btnDelete_Click(object sender, EventArgs e)
@@ -80,7 +76,7 @@ namespace HotelManagementSystem.hotel
             {
 
                // MessageBox.Show(DB.Reader.GetString("room_description"));
-               id =  DB.Reader.GetString("room_id");
+               roomID =  DB.Reader.GetString("room_id");
                category = DB.Reader.GetString("room_category");
                desc = DB.Reader.GetString("room_description");
                price = DB.Reader.GetString("category_price");
@@ -96,7 +92,7 @@ namespace HotelManagementSystem.hotel
         {
             //call the random class
             Random rand = new Random();
-            txtID.Text = rand.Next(10, 100).ToString(); //generate random number
+            txtID.Text = rand.Next(1000, 10000).ToString(); //generate random number
         }
 
         //the logic part
@@ -109,9 +105,10 @@ namespace HotelManagementSystem.hotel
 
             getRoomById(roomId); //call this method to query the database to retrieve the select room data
 
+            //add each selected room data to the cart
             DataGridViewRow newRow = new DataGridViewRow();
             newRow.CreateCells(dataGridBooking);
-            newRow.Cells[0].Value = id;
+            newRow.Cells[0].Value = roomID;
             newRow.Cells[1].Value = category;
             newRow.Cells[2].Value = desc;
             newRow.Cells[3].Value = price;
@@ -126,14 +123,19 @@ namespace HotelManagementSystem.hotel
         {
             try
             {
+                //check if the row of an item in the cart is selcted
                 if (dataGridBooking.SelectedRows.Count > 0)
                 {
+                    //loop through the cart
                     foreach (DataGridViewRow row in dataGridBooking.Rows)
                     {
+                        //if the selected row is true
                         if (row.Selected == true)
                         {
+                            //substract the price from the Total textbox
                             txtTotal.Text = (Convert.ToDouble(txtTotal.Text) - Convert.ToDouble(row.Cells["category_price"].Value)).ToString();
 
+                            //remove item from the cart
                             dataGridBooking.Rows.RemoveAt(row.Index);
                             dataGridBooking.Refresh();
                         }
@@ -155,6 +157,7 @@ namespace HotelManagementSystem.hotel
         {
             //calculate the datagridview price
             double sum = 0;
+
 
             for (int i = 0; i < dataGridBooking.Rows.Count; i++)
             {
@@ -186,7 +189,7 @@ namespace HotelManagementSystem.hotel
             DB.Conn.Open();
 
             //Create
-            string sql = "INSERT INTO bill (res_id, total) VALUES ('" + txtID.Text + "', '" + txtTotal.Text + "')";
+            string sql = "INSERT INTO bill (res_number, total) VALUES ('" + txtID.Text + "', '" + txtTotal.Text + "')";
             DB.Command = new MySqlCommand(sql, DB.Conn);
             DB.Command.ExecuteNonQuery();
 
@@ -203,15 +206,14 @@ namespace HotelManagementSystem.hotel
             foreach (DataGridViewRow row in dataGridBooking.Rows)
             {
                 string roomID = Convert.ToString(row.Cells["room_id"].Value);
-                MessageBox.Show(roomID);
 
-                //DB.Conn.Open();
+                DB.Conn.Open();
 
-                ////Create
-                //string sql = "INSERT INTO reservations (res_id, res_arrival, res_departure, cus_id, room_id) VALUES ('" + txtID.Text + "', '" + dTpArrival.Text + "', '" + dTpDeparture.Text+ "', '" + custId + "', '" + roomID + "')";
-                //DB.Command = new MySqlCommand(sql, DB.Conn);
-                //DB.Command.ExecuteNonQuery();
-                //DB.Conn.Close();
+                //Create
+                string sql = "INSERT INTO reservations (res_number, res_arrival, res_departure, cus_id, room_id) VALUES ('" + txtID.Text + "', '" + dTpArrival.Text + "', '" + dTpDeparture.Text + "', '" + custId + "', '" + roomID + "')";
+                DB.Command = new MySqlCommand(sql, DB.Conn);
+                DB.Command.ExecuteNonQuery();
+                DB.Conn.Close();
 
             }
         }
