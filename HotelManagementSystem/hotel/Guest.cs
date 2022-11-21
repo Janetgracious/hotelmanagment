@@ -40,14 +40,13 @@ namespace HotelManagementSystem.hotel
             }
 
             DB.Conn.Open();
-            //DB.Command.CommandText = "SELECT * FROM employees WHERE username = '"+ txtUsername.Text + "' AND password = '"+txtpassword.Text+"'";
-            //DB.Command.CommandType = CommandType.Text;
-            //DB.Reader = DB.Command.ExecuteReader();
-
             //Create
             string sql = "INSERT INTO customers (cus_Name, cus_Address, cus_Telephone) VALUES ('" + txtName.Text+ "', '"+txtAddress.Text+ "', '"+txtTelephone.Text+"')";
             DB.Command = new MySqlCommand(sql, DB.Conn);
             DB.Command.ExecuteNonQuery();
+
+            DB.Conn.Close(); //close connection
+
             MessageBox.Show("Submitted");
 
             txtName.Text = "";
@@ -71,7 +70,6 @@ namespace HotelManagementSystem.hotel
 
         private void dataGridGuest_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            DataGridView senderGrid = (DataGridView)sender;
 
             if (dataGridGuest.Rows[e.RowIndex].Cells[e.ColumnIndex].Value != null)
             {
@@ -96,7 +94,9 @@ namespace HotelManagementSystem.hotel
             txtName.Text = "";
             txtAddress.Text = "";
             txtTelephone.Text = "";
-     
+
+            DB.Conn.Close(); //close connection
+
             ReadData();
         }
 
@@ -114,7 +114,9 @@ namespace HotelManagementSystem.hotel
             txtName.Text = "";
             txtAddress.Text = "";
             txtTelephone.Text = "";
-         
+
+            DB.Conn.Close(); //close connection
+
             ReadData();
         }
 

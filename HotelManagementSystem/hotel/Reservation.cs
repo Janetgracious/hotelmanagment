@@ -62,7 +62,7 @@ namespace HotelManagementSystem.hotel
         //delete from cart
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            removeCell();   
+            removeCell();
         }
 
         private void getRoomById(string id)
@@ -101,7 +101,6 @@ namespace HotelManagementSystem.hotel
             
             string roomId = cmbRoom.SelectedValue.ToString(); // get the selected room roomID
 
-            int num = 0;
 
             getRoomById(roomId); //call this method to query the database to retrieve the select room data
 
@@ -179,7 +178,7 @@ namespace HotelManagementSystem.hotel
         private void insertBillDB()
         {
 
-            if (txtTotal.Text == "")
+            if (txtTotal.Text?.Length == 0)
             {
                 MessageBox.Show("Select a Room");
 

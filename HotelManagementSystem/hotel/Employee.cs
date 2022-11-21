@@ -32,21 +32,22 @@ namespace HotelManagementSystem.hotel
 
         private void CreateEmployee()
         {
-            if (txtName.Text == "" || txtAddress.Text == "" || txtPassword.Text == "" || dateDOB.Text == "" || txtUsername.Text == "" || txtTelephone.Text == "" )
+            //check if string length is zero or null
+            if (txtName.Text?.Length == 0 || txtAddress.Text?.Length == 0 || txtPassword.Text?.Length == 0 || dateDOB.Text?.Length == 0 || txtUsername.Text?.Length == 0 || txtTelephone.Text?.Length == 0)
             {
                 MessageBox.Show("Fill in fields");
                 return;
             }
 
             DB.Conn.Open();
-            //DB.Command.CommandText = "SELECT * FROM employees WHERE username = '"+ txtUsername.Text + "' AND password = '"+txtpassword.Text+"'";
-            //DB.Command.CommandType = CommandType.Text;
-            //DB.Reader = DB.Command.ExecuteReader();
 
             //Create
             string sql = "INSERT INTO employees (emp_Name, emp_DOB, emp_Address, emp_Telephone, username, password) VALUES ('"+txtUsername.Text+ "', '"+dateDOB.Text+ "', '"+txtAddress.Text+ "', '"+txtTelephone.Text+ "', '"+txtUsername.Text+ "', '"+txtPassword.Text+"')";
             DB.Command = new MySqlCommand(sql, DB.Conn);
             DB.Command.ExecuteNonQuery();
+
+            //close connection
+            DB.Conn.Close();
             MessageBox.Show("Submitted");
 
             txtName.Text = "";
@@ -72,8 +73,6 @@ namespace HotelManagementSystem.hotel
 
         private void dataGridEmployee_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            DataGridView senderGrid = (DataGridView)sender;
-
             if (dataGridEmployee.Rows[e.RowIndex].Cells[e.ColumnIndex].Value != null)
             {
                 txtID.Text = dataGridEmployee.Rows[e.RowIndex].Cells[0].Value.ToString(); //assign the value of the ID of the selected datagrid to the ID textbox
@@ -104,6 +103,8 @@ namespace HotelManagementSystem.hotel
             txtUsername.Text = "";
             dateDOB.Text = "";
 
+            DB.Conn.Close(); //close connection
+
             ReadData();
         }
 
@@ -124,6 +125,8 @@ namespace HotelManagementSystem.hotel
             txtTelephone.Text = "";
             txtUsername.Text = "";
             dateDOB.Text = "";
+
+            DB.Conn.Close(); //close connection
 
             ReadData();
         }

@@ -33,21 +33,19 @@ namespace HotelManagementSystem.hotel
         private void CreateRoom()
         {
             //validation
-            if (cmbRoomCat.Text == "" || txtPrice.Text == "" || cmbRoomStatus.Text == "")
+            if (cmbRoomCat.Text?.Length == 0 || txtPrice.Text?.Length == 0 || cmbRoomStatus.Text?.Length == 0)
             {
                 MessageBox.Show("Fill in fields");
                 return;
             }
 
             DB.Conn.Open();
-            //DB.Command.CommandText = "SELECT * FROM employees WHERE username = '"+ txtUsername.Text + "' AND password = '"+txtpassword.Text+"'";
-            //DB.Command.CommandType = CommandType.Text;
-            //DB.Reader = DB.Command.ExecuteReader();
-
             //Create
             string sql = "INSERT INTO room (room_category, room_description, category_price, room_status) VALUES ('" + cmbRoomCat.Text + "', '" + rtbDescription.Text + "', '" + txtPrice.Text + "', '"+cmbRoomStatus+"')";
             DB.Command = new MySqlCommand(sql, DB.Conn);
             DB.Command.ExecuteNonQuery();
+
+            DB.Conn.Close(); //close connection
             MessageBox.Show("Submitted");
 
             cmbRoomStatus.Text = "";
@@ -72,7 +70,7 @@ namespace HotelManagementSystem.hotel
 
         private void dataGridRooms_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            DataGridView senderGrid = (DataGridView)sender;
+           
 
             if (dataGridRooms.Rows[e.RowIndex].Cells[e.ColumnIndex].Value != null)
             {
